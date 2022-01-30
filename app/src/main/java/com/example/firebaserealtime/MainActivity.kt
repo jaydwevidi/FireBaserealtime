@@ -27,6 +27,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        ActivityCompat.requestPermissions(this , arrayOf(
+            Manifest.permission.ACCESS_FINE_LOCATION //, Manifest.permission.ACCESS_BACKGROUND_LOCATION
+        ) , 102)
+
         findViewById<Button>(R.id.button1).setOnClickListener {
             var name : String = findViewById<EditText>(R.id.etFullName).text.toString()
             val re = Regex("[^A-Za-z0-9 ]")

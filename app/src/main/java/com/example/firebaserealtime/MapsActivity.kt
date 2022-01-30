@@ -49,10 +49,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 val date: String = SimpleDateFormat("yyyy-MM-dd").format(Date())
                 val cTime: String = SimpleDateFormat("HH:mm:ss:SSS").format(Date())
 
-                myRef = myRef.child(date).child(cTime)
+                //myRef = myRef.child(date).child(cTime)
 
-                myRef.child("Latitude").setValue(i.latitude)
-                myRef.child("Longitude").setValue(i.longitude)
+                myRef.child(date).child(cTime).child("Latitude").setValue(i.latitude)
+                myRef.child(date).child(cTime).child("Longitude").setValue(i.longitude)
 
             }
             super.onLocationResult(locationResult)
