@@ -2,21 +2,20 @@ package com.example.firebaserealtime
 
 import android.Manifest
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-
+import com.example.firebaserealtime.databinding.ActivityMapsBinding
+import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.example.firebaserealtime.databinding.ActivityMapsBinding
-import com.google.android.gms.location.*
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.android.gms.tasks.Task
@@ -84,26 +83,27 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         }
 
         getLocationFineOnce()
-        val myRef = database.getReference(fullName)
+
+        fullName = intent.getStringExtra("MFullName")!!
+
+        myRef = Firebase.database.getReference(fullName)
 
         binding.apply {
             startSyncButton.setOnClickListener { checkSettingsThenStart() }
             stopSyncButton.setOnClickListener { stopLocationUpdates() }
         }
-
-        fullName = intent.getStringExtra("MFullName")!!
     }
 
     private fun startLocationUpdates(){
+
         if (ActivityCompat.checkSelfPermission(
                 this, Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
                 this, Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED) {
 
-            Toast.makeText(this, "updates Location no permission", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Updates Location no permission", Toast.LENGTH_SHORT).show()
             return
-
         }
         fusedLocationClient.requestLocationUpdates(locationRequest , locationCallback , Looper.getMainLooper())
     }
