@@ -38,7 +38,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var myRef : DatabaseReference
 
 
-    val locationCallback = object : LocationCallback(){
+    private val locationCallback = object : LocationCallback(){
 
         override fun onLocationResult(locationResult: LocationResult) {
             for (i in locationResult.locations){
@@ -47,7 +47,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 //val date = DateFormat.getDateInstance().format("MMMM d, yyyy ")
 
                 val date: String = SimpleDateFormat("yyyy-MM-dd").format(Date())
-                val cTime: String = SimpleDateFormat("HH:mm:ss:SSS").format(Date())
+                val cTime: String = SimpleDateFormat("HH:mm:ss").format(Date())
 
                 //myRef = myRef.child(date).child(cTime)
 
@@ -92,6 +92,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             startSyncButton.setOnClickListener { checkSettingsThenStart() }
             stopSyncButton.setOnClickListener { stopLocationUpdates() }
         }
+        checkSettingsThenStart()
     }
 
     private fun startLocationUpdates(){
@@ -105,10 +106,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             Toast.makeText(this, "Updates Location no permission", Toast.LENGTH_SHORT).show()
             return
         }
+        Toast.makeText(this, "Location syncing to Firebase", Toast.LENGTH_SHORT).show()
         fusedLocationClient.requestLocationUpdates(locationRequest , locationCallback , Looper.getMainLooper())
     }
 
-    fun getLocationFineOnce(){
+    private fun getLocationFineOnce(){
         //Toast.makeText(this, "get Fine called", Toast.LENGTH_SHORT).show()
 
         if (ActivityCompat.checkSelfPermission(
@@ -167,8 +169,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         task.addOnFailureListener (failureListener)
     }
 
-
     private fun stopLocationUpdates(){
+        Toast.makeText(this, "Location syncing Stopped", Toast.LENGTH_SHORT).show()
         fusedLocationClient.removeLocationUpdates(locationCallback)
     }
 }
