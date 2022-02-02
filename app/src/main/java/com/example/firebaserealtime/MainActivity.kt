@@ -19,9 +19,7 @@ class MainActivity : AppCompatActivity() {
         ) , 102)
 
         findViewById<Button>(R.id.button1).setOnClickListener {
-            var name : String = findViewById<EditText>(R.id.etFullName).text.toString()
-            val re = Regex("[^A-Za-z0-9 ]")
-            name = re.replace(name, "") // works
+            val name : String = findViewById<EditText>(R.id.etFullName).text.toString()
 
             val intent = Intent(this , MapsActivity::class.java)
             intent.putExtra("MFullName" , name)

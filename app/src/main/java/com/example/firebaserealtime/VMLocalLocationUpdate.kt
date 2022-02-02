@@ -22,7 +22,7 @@ import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.*
 
-class MainActivityViewModel : ViewModel() {
+class VMLocalLocationUpdate : ViewModel() {
 
     val location = MutableLiveData<Location>()
     private lateinit var myRef : DatabaseReference
