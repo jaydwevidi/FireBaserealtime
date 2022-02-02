@@ -16,12 +16,13 @@
         tools:context=".MapsActivity" />
 
     <Button
-        android:id="@+id/stopSyncButton"
+        android:id="@+id/stopLocalSync"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Stop Sync"
+        android:layout_marginBottom="40dp"
+        android:text="Local Stop"
         map:layout_constraintBottom_toBottomOf="parent"
-        map:layout_constraintEnd_toStartOf="@+id/startSyncButton"
+        map:layout_constraintEnd_toStartOf="@+id/startLocalSync"
         map:layout_constraintHorizontal_bias="0.5"
         map:layout_constraintStart_toStartOf="parent" />
 
@@ -29,9 +30,30 @@
         android:id="@+id/startSyncButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start Sync"
+        android:text="Start Service"
         map:layout_constraintBottom_toBottomOf="@+id/stopSyncButton"
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintHorizontal_bias="0.5"
         map:layout_constraintStart_toEndOf="@+id/stopSyncButton" />
+
+    <Button
+        android:id="@+id/stopSyncButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="104dp"
+        android:text="Service Stop"
+        map:layout_constraintBottom_toBottomOf="parent"
+        map:layout_constraintEnd_toStartOf="@+id/startSyncButton"
+        map:layout_constraintHorizontal_bias="0.5"
+        map:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/startLocalSync"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Local Start"
+        map:layout_constraintBottom_toBottomOf="@+id/stopLocalSync"
+        map:layout_constraintEnd_toEndOf="parent"
+        map:layout_constraintHorizontal_bias="0.5"
+        map:layout_constraintStart_toEndOf="@+id/stopLocalSync" />
 </androidx.constraintlayout.widget.ConstraintLayout>

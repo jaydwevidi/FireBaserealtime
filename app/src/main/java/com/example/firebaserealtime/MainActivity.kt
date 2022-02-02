@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this , MapsActivity::class.java)
             intent.putExtra("MFullName" , name)
             startActivity(intent)
+            finish()
         }
 
     }

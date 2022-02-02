@@ -50,7 +50,11 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-location:19.0.1'
 
-
     //Dexter permissions
     implementation 'com.karumi:dexter:6.2.3'
+
+    // ViewModel
+    def lifecycle_version = "2.5.0-alpha01"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 }
